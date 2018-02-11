@@ -124,3 +124,4 @@ act_wkend_mean <- aggregate(steps~interval, FUN = mean, data=act_weekend, na.rm=
 act_wkday_mean$day <-"weekday"
 act_wkend_mean$day <-"weekend"
 act_wk <- rbind(act_wkday_mean, act_wkend_mean)
+qplot(interval, steps, data=act_wk, geom = "line", facets=day~.)
