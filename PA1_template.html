@@ -141,13 +141,15 @@ $(document).ready(function () {
 </ol>
 <pre class="r"><code>activity &lt;- read.csv(&quot;activity.csv&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Process/transform the data (if necessary) into a format suitable for your analysis What is mean total number of steps taken per day?</li>
+<li>Process/transform the data (if necessary) into a format suitable for your analysis</li>
 </ol>
 <pre class="r"><code>act_date &lt;- aggregate(activity$steps, by=list(activity$date), FUN=sum, na.rm=TRUE)</code></pre>
 </div>
 </div>
-<div id="for-this-part-of-the-assignment-you-can-ignore-the-missing-values-in-the-dataset." class="section level2">
-<h2>For this part of the assignment, you can ignore the missing values in the dataset.</h2>
+<div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
+<h2>What is mean total number of steps taken per day?</h2>
+<div id="for-this-part-of-the-assignment-you-can-ignore-the-missing-values-in-the-dataset." class="section level3">
+<h3>For this part of the assignment, you can ignore the missing values in the dataset.</h3>
 <ol style="list-style-type: decimal">
 <li>Make a histogram of the total number of steps taken each day</li>
 </ol>
@@ -163,6 +165,7 @@ $(document).ready(function () {
 <pre><code>## [1] 9354.23</code></pre>
 <pre class="r"><code>median(act_date$x)</code></pre>
 <pre><code>## [1] 10395</code></pre>
+</div>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level2">
 <h2>What is the average daily activity pattern?</h2>
