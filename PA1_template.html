@@ -225,13 +225,18 @@ qplot(act_date$x,
 <li>Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</li>
 </ol>
 <pre class="r"><code>activity$day &lt;- weekdays(as.Date(activity$date))
-activity$day[activity$day == &quot;Monday&quot; | activity$day == &quot;Tuesday&quot; | 
-     activity$day == &quot;Wednesday&quot; | activity$day == &quot;Thursday&quot; | 
-     activity$day == &quot;Friday&quot; ] &lt;- &quot;weekday&quot;
-activity$day[activity$day == &quot;Saturday&quot; | activity$day == &quot;Sunday&quot;] &lt;- &quot;weekend&quot;</code></pre>
+activity$week &lt;- ifelse(activity$day == &quot;Saturday&quot; | activity$day == &quot;Sunday&quot;,
+     &quot;weekend&quot;, &quot;weekday&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Make a panel plot containing a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using simulated data:</li>
 </ol>
+<pre class="r"><code>act_weekday &lt;- subset(activity, week==&quot;weekday&quot;)
+act_weekend &lt;- subset(activity, week==&quot;weekend&quot;)
+act_wkday_mean &lt;- aggregate(steps~interval, FUN = mean, data=act_weekday, na.rm=TRUE)
+act_wkend_mean &lt;- aggregate(steps~interval, FUN = mean, data=act_weekend, na.rm=TRUE)
+act_wkday_mean$day &lt;-&quot;weekday&quot;
+act_wkend_mean$day &lt;-&quot;weekend&quot;
+act_wk &lt;- rbind(act_wkday_mean, act_wkend_mean)</code></pre>
 </div>
 </div>
 </div>

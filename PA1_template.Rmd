@@ -117,3 +117,10 @@ activity$week <- ifelse(activity$day == "Saturday" | activity$day == "Sunday",
 2.	Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using simulated data:
 
 ```{r wkday_wkend}
+act_weekday <- subset(activity, week=="weekday")
+act_weekend <- subset(activity, week=="weekend")
+act_wkday_mean <- aggregate(steps~interval, FUN = mean, data=act_weekday, na.rm=TRUE)
+act_wkend_mean <- aggregate(steps~interval, FUN = mean, data=act_weekend, na.rm=TRUE)
+act_wkday_mean$day <-"weekday"
+act_wkend_mean$day <-"weekend"
+act_wk <- rbind(act_wkday_mean, act_wkend_mean)
